@@ -1,4 +1,3 @@
-{% include 'duoshuo.swig' %}
 {% include 'disqus.swig' %}
 {% include 'disqusapi.swig' %}
 {% include 'hypercomments.swig' %}

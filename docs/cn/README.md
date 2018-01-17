@@ -7,13 +7,12 @@
 <p align="center">«NexT» 是一款风格优雅的高质量 <a href="http://hexo.io">Hexo</a> 主题，自点点滴滴中用爱雕琢而成。</p>
 
 [![gitter-image]][gitter-url]
+[![riot-image]][riot-url]
 [![mnt-image]][commits-url]
 [![travis-image]][travis-url]
 [![rel-image]][releases-url]
 [![hexo-image]][hexo-url]
 [![lic-image]][lic-url]
-
-* :triangular_flag_on_post: 推荐 Markdown 编辑器：<a href="https://github.com/theme-next/hexo-editor" target="_blank">HexoEditor</a>
 
 ## 即时预览
 
@@ -60,11 +59,18 @@ $ git pull
 
 我们欢迎你贡献出你的一份力量，你可以随时提交 issue 或 fork 本仓库。静候你的 pull request。
 
+## 第三方應用程序
+
+* :triangular_flag_on_post: <a title="Hexo Markdown 编辑器" href="https://github.com/zhuzhuyule/HexoEditor" target="_blank">HexoEditor</a>
+
 [browser-image]: https://img.shields.io/badge/browser-%20chrome%20%7C%20firefox%20%7C%20opera%20%7C%20safari%20%7C%20ie%20%3E%3D%209-lightgrey.svg
 [browser-url]: https://www.browserstack.com
 
 [gitter-image]: https://badges.gitter.im/Join%20Chat.svg
 [gitter-url]: https://gitter.im/theme-next
+
+[riot-image]: https://img.shields.io/badge/riot-join%20chat-green.svg
+[riot-url]: https://riot.im/app/#/room/#NexT:matrix.org
 
 [travis-image]: https://travis-ci.org/theme-next/hexo-theme-next.svg?branch=master
 [travis-url]: https://travis-ci.org/theme-next/hexo-theme-next?branch=master "Travis CI"

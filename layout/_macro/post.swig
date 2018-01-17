@@ -107,11 +107,11 @@
                 <span class="post-meta-item-text">{{ __('post.in') }}</span>
               {% endif %}
               {% for cat in post.categories %}
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="{{ url_for(cat.path) }}" itemprop="url" rel="index">
-                    <span itemprop="name">{{ cat.name }}</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">{#
+                #}<a href="{{ url_for(cat.path) }}" itemprop="url" rel="index">{#
+                  #}<span itemprop="name">{{ cat.name }}</span>{#
+                #}</a>{#
+              #}</span>
 
                 {% set cat_length = post.categories.length %}
                 {% if cat_length > 1 and loop.index !== cat_length %}
@@ -122,17 +122,7 @@
           {% endif %}
 
           {% if post.comments %}
-            {% if (theme.duoshuo and theme.duoshuo.shortname) or theme.duoshuo_shortname %}
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="{{ url_for(post.path) }}#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="{{ post.path }}" itemprop="commentCount"></span>
-                </a>
-              </span>
-            {% elseif theme.facebook_comments_plugin.enable %}
+            {% if theme.facebook_comments_plugin.enable %}
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">

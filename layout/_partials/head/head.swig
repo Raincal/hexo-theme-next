@@ -4,6 +4,15 @@
 <meta name="theme-color" content="{{ theme.android_chrome_color }}">
 
 
+{% if theme.needmoreshare2.enable %}
+  {% set needmoreshare2_css = url_for(theme.vendors._internal + '/needsharebutton/needsharebutton.css') %}
+  {% if theme.vendors.needmoreshare2 %}
+    {% set needmoreshare2_css = theme.vendors.needmoreshare2_css %}
+  {% endif %}
+  <link rel="stylesheet" href="{{ needmoreshare2_css }}">
+{% endif %}
+
+
 {% if theme.pace %}
   {% set pace_css_uri = url_for(theme.vendors._internal + '/pace/'+ theme.pace_theme +'.min.css?v=1.0.2') %}
   {% set pace_js_uri = url_for(theme.vendors._internal + '/pace/pace.min.js?v=1.0.2') %}
@@ -63,7 +72,7 @@
   <link href="{{ fancybox_css_uri }}" rel="stylesheet" type="text/css" />
 {% endif %}
 
-{% include "./head/external-fonts.swig" %}
+{% include "./external-fonts.swig" %}
 
 {% set font_awesome_uri = url_for(theme.vendors._internal + '/font-awesome/css/font-awesome.min.css?v=4.6.2') %}
 {% if theme.vendors.fontawesome %}
@@ -92,37 +101,11 @@
   <meta name="msapplication-config" content="{{ url_for(theme.favicon.ms_browserconfig) }}" />
 {% endif %}
 
-{% if page.keywords %}
-  <meta name="keywords" content="{{ page.keywords }}" />
-{% elif page.tags and page.tags.length %}
-  <meta name="keywords" content="{% for tag in page.tags %}{{ tag.name }},{% endfor %}" />
-{% elif theme.keywords %}
-  <meta name="keywords" content="{{ theme.keywords }}" />
-{% endif %}
-
-
-{% if theme.rss === '' and config.feed and config.feed.path %}
-  {% set theme.rss = config.feed.path %}
-{% endif %}
-{% if theme.rss %}
-  <link rel="alternate" href="{{ url_for(theme.rss) }}" title="{{ config.title }}" type="application/atom+xml" />
-{% endif %}
-
 
 {% if theme.facebook_sdk.enable and theme.facebook_sdk.webmaster %}
   <meta property="fb:admins" content="{{ theme.facebook_sdk.fb_admin }}" />
   <meta property="fb:app_id" content="{{ theme.facebook_sdk.app_id }}" />
 {% endif %}
-
-
-{{
-  open_graph({
-    twitter_id: theme.twitter,
-    google_plus: theme.google_plus,
-    fb_admins: theme.fb_admins,
-    fb_app_id: theme.fb_app_id
-  })
-}}
 
 
 {# Export some HEXO Configurations to Front-End #}
@@ -138,10 +121,6 @@
     lazyload: {{ theme.lazyload }},
     tabs: {{ theme.tabs.enable }},
     motion: {{ theme.motion | json_encode }},
-    duoshuo: {
-      userId: '{{ theme.duoshuo_info.user_id | default() }}',
-      author: '{{ theme.duoshuo_info.admin_nickname | default(__('author'))}}'
-    },
     algolia: {
       applicationID: '{{ theme.algolia.applicationID }}',
       apiKey: '{{ theme.algolia.apiKey }}',
@@ -152,9 +131,4 @@
   };
 </script>
 
-{# Canonical, good for google search engine (SEO) : https://support.google.com/webmasters/answer/139066 #}
-{% if theme.canonical %}
-  <link rel="canonical" href="{{ config.url }}/{{ page.canonical_path.replace('index.html', '') }}"/>
-{% endif %}
-
-{% include 'head/custom-head.swig' %}
+{% include './custom-head.swig' %}
