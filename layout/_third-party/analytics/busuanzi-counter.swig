@@ -1,7 +1,7 @@
 {% if theme.busuanzi_count.enable %}
 <div class="busuanzi-count">
   <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-  <script src="//cdn.jsdelivr.net/jquery/2.2.4/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
   <script>
     $(document).ready(function() {
       var int = setInterval(fixCount, 50);
