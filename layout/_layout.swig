@@ -114,14 +114,17 @@
   </div>
 
   {% include '_scripts/vendors.swig' %}
+
+  <!-- build:js /js/bundle.js -->
   {% include '_scripts/commons.swig' %}
+  {% include '_scripts/boostrap.swig' %}
 
   {% set scheme_script = '_scripts/schemes/' + theme.scheme | lower + '.swig' %}
   {% include scheme_script %}
+  <!-- endbuild -->
 
   {% block script_extra %}{% endblock %}
 
-  {% include '_scripts/boostrap.swig' %}
 
   {% include '_third-party/comments/index.swig' %}
   {% include '_third-party/search/index.swig' %}
