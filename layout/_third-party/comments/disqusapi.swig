@@ -3,7 +3,7 @@
     {% if theme.vendors.iDisqus_css %}
       {% set iDisqus_css_uri = theme.vendors.iDisqus_css %}
     {% endif %}
-    {% if (not is_home() and is_post()) %}
+    {% if not is_home() and not is_tag() and not is_category() and not is_archive() %}
       <link rel="stylesheet" href="{{ iDisqus_css_uri }}" type="text/css" />
     {% endif %}
 
