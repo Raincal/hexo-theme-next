@@ -30,9 +30,7 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             {% if theme.avatar %}
-              <img class="site-author-image" itemprop="image"
-                src="{{ url_for( theme.avatar | default(theme.images + '/avatar.gif') ) }}"
-                alt="{{ theme.author }}" />
+              <div class="site-author-image"></div>
             {% endif %}
               <p class="site-author-name" itemprop="name">{{ theme.author }}</p>
               <p class="site-description motion-element" itemprop="description">{#
@@ -125,7 +123,7 @@
           {% if theme.creative_commons in cc %}
             <div class="cc-license motion-element" itemprop="license">
               <a href="https://creativecommons.org/{% if theme.creative_commons === 'zero' %}publicdomain/zero/1.0{% else %}licenses/{{ theme.creative_commons }}/4.0{% endif %}/" class="cc-opacity" target="_blank"{% if theme.seo %} rel="external nofollow noopener"{% endif %}>
-                <img src="{{ url_for(theme.images) }}/cc-{{ theme.creative_commons }}.svg" alt="Creative Commons" />
+                <div class="creative-commons"></div>
               </a>
             </div>
           {% endif %}
