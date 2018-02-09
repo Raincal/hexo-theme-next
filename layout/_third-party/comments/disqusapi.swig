@@ -3,7 +3,9 @@
     {% if theme.vendors.iDisqus_css %}
       {% set iDisqus_css_uri = theme.vendors.iDisqus_css %}
     {% endif %}
-    <link rel="stylesheet" href="{{ iDisqus_css_uri }}" type="text/css" />
+    {% if (not is_home() and is_post()) %}
+      <link rel="stylesheet" href="{{ iDisqus_css_uri }}" type="text/css" />
+    {% endif %}
 
     {% set iDisqus_js_uri = url_for(theme.vendors._internal + '/disqus/dist/iDisqus.min.js?v=1.0.0') %}
     {% if theme.vendors.iDisqus_js %}
