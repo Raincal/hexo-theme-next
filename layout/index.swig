@@ -16,7 +16,6 @@
   </section>
 
   {% include '_partials/pagination.swig' %}
-  {% include '_custom/content.swig' %}
 {% endblock %}
 
 {% block sidebar %}
