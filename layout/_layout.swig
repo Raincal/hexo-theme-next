@@ -7,6 +7,37 @@
 
 <html class="{{ html_class | lower }}" lang="{{ config.language }}">
 <head>
+  <script>
+    function hasMobileUA() {
+      var nav = window.navigator;
+      var ua = nav.userAgent;
+      var pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
+
+      return pa.test(ua);
+    }
+
+    function isTablet() {
+      return window.screen.width < 992 && window.screen.width > 767 && this.hasMobileUA();
+    }
+
+    function isMobile() {
+      return window.screen.width < 767 && this.hasMobileUA();
+    }
+
+    function isDesktop() {
+      return !this.isTablet() && !this.isMobile();
+    }
+
+    {% if theme.is_mobile %}
+      if(isDesktop()) {
+        window.location.href = "{{ config.url }}" + window.location.pathname;
+      }
+    {% elseif not theme.is_mobile %}
+      if(isMobile()) {
+        window.location.href = "{{ theme.mobile_url }}" + window.location.pathname;
+      }
+    {% endif %}
+  </script>
   {{ partial('_partials/head/head.swig', {}, {cache: theme.cache.enable}) }}
   {% include '_partials/head/head-unique.swig' %}
   <title>{% block title %}{% endblock %}</title>

@@ -12,7 +12,10 @@ hexo.on('generateBefore', function () {
     if (data && data.next) {
       if (data.next.override) {
         hexo.theme.config = data.next;
-      } else {
+      } else if(data.custom) {
+        merge(hexo.config, data.next, data.custom);
+        merge(hexo.theme.config, data.next, data.custom);
+      }else {
         merge(hexo.config, data.next);
         merge(hexo.theme.config, data.next);
       }
