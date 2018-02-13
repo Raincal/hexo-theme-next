@@ -8,7 +8,7 @@
     {% if theme.vendors.iDisqus_js %}
       {% set iDisqus_js_uri = theme.vendors.iDisqus_js %}
     {% endif %}
-    {% if is_post() or url_for(path) == '/photos/index.html' %}
+    {% if is_post() or url_for(path) == '/about/index.html' or url_for(path) == '/photos/index.html' %}
       <link rel="stylesheet" href="{{ iDisqus_css_uri }}" type="text/css" />
       <script preload src="{{ iDisqus_js_uri }}"></script>
       <script>
