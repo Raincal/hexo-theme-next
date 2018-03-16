@@ -1,30 +1,4 @@
-NexT主题使用的Leancloud访客统计插件存在重大安全漏洞，拥有不良企图的人利用该漏洞可随意更改访客数量或一定程度上增删数据库记录。
-
-该漏洞由[我](https://github.com/LEAFERx/)独立发现，并由[Ivan.Nginx](https://github.com/ivan-nginx)确认。
-
-- 有关的issue：[#25](https://github.com/theme-next/hexo-theme-next/issues/25)
-
-- 有关的pr： [#137](https://github.com/theme-next/hexo-theme-next/pull/137)
-
-- 有关的插件：[hexo-leancloud-counter-security](https://github.com/theme-next/hexo-leancloud-counter-security)
-
-经过讨论后，我们认为该漏洞必须由使用者手动修复。本文给出了修复方法。
-
-**注意：所有使用该插件而未经修复的NexT站点或使用类似方法集成Leancloud访客统计功能的站点都被认为是不安全的，请尽快修复。**
-
----
-
-原文链接：https://leaferx.online/2018/02/11/lc-security/
-
----
-
-为方便起见，本文将复述从头开始配置Leancloud访客统计插件的过程。
-
-本文部分内容参考自Doublemine的[为NexT主题添加文章阅读量统计功能](https://notes.wanghao.work/2015-10-21-%E4%B8%BANexT%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD.html#%E9%85%8D%E7%BD%AELeanCloud)。
-
-对于已经完成该部分配置的用户，请自行对照本文步骤进行修复。
-
-在配置前，请升级NexT至**v6.0.5**以上。
+在配置前，请升级NexT至**v6.0.6**以上。
 
 在配置过程中请注意**博客配置文件**和**主题配置文件**的区别。
 
@@ -67,14 +41,14 @@ NexT主题使用的Leancloud访客统计插件存在重大安全漏洞，拥有�
 ```yml
 leancloud_visitors:
   enable: true
-  security: true 
+  security: true
   app_id: <<your app id>>
   app_key: <<your app key>>
 ```
 
 - 设置Web安全域名确保域名调用安全。点击`1`处进入安全中心，然后在`2`处填写自己博客对应的域名（**注意协议、域名和端口号需严格一致**）：
 
- ![9](https://dn-cqha0xyi.qbox.me/0e537cc4bec2e185201d.jpg) 
+ ![9](https://dn-cqha0xyi.qbox.me/0e537cc4bec2e185201d.jpg)
 
 到这里内容均与Doublemine的[为NexT主题添加文章阅读量统计功能](https://notes.wanghao.work/2015-10-21-%E4%B8%BANexT%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E6%96%87%E7%AB%A0%E9%98%85%E8%AF%BB%E9%87%8F%E7%BB%9F%E8%AE%A1%E5%8A%9F%E8%83%BD.html#%E9%85%8D%E7%BD%AELeanCloud)这篇文章相同，只不过截图为新版的Leancloud的界面。
 
@@ -102,7 +76,7 @@ leancloud_visitors:
   如图所示：
 
   ![12](https://dn-cqha0xyi.qbox.me/a8e13418ed1d9405315b.jpg)
-   
+
 - 点击保存后应出现类似红框处函数。此时点击`1`处部署：
 
   ![13](https://dn-cqha0xyi.qbox.me/ca56bf2e5fc2a1343565.jpg)
@@ -144,8 +118,8 @@ leancloud_visitors:
     enable_sync: true
     app_id: <<your app id>>
     app_key: <<your app key>
-    username: 
-    password: 
+    username:
+    password:
   ```
 
 - 在相同目录键入以下命令：
@@ -157,7 +131,7 @@ leancloud_visitors:
   hexo lc-counter r <<username>> <<password>>
   ```
 
-  将`<<username>>`和`<<password>>`替换为你自己的用户名和密码（不必与leancloud的账号）相同。此用户名和密码将在hexo部署时使用。
+  将`<<username>>`和`<<password>>`替换为你自己的用户名和密码（不必与leancloud的账号相同）。此用户名和密码将在hexo部署时使用。
 
   - 打开**博客配置文件**`_config.yml`，将`<<username>>`和`<<password>>`替换为你刚刚设置的用户名和密码：
   ```yml
@@ -205,3 +179,7 @@ leancloud_visitors:
 每次运行`hexo d`部署的时候，插件都会扫描本地`source/_posts`下的文章并与数据库对比，然后在数据库创建没有录入数据库的文章记录。
 
 如果在**博客配置文件**中留空username或password，则在部署过程中程序会要求输入。
+
+---
+
+原文链接：https://leaferx.online/2018/02/11/lc-security/
