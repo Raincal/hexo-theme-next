@@ -1,8 +1,13 @@
 /* global NexT: true */
 
-$(document).ready(function () {
+NexT.postDetails = {};
 
+NexT.postDetails.init = function(){
   initScrollSpy();
+
+  NexT.utils.needAffix() && initAffix();
+
+  initTOCDimension();
 
   function initScrollSpy () {
     var tocSelector = '.post-toc';
@@ -29,12 +34,56 @@ $(document).ready(function () {
     }
   }
 
-});
+  function initAffix () {
+    var headerHeight = $('.header-inner').height();
+    var footerOffset = parseInt($('.main').css('padding-bottom'), 10);
+    var sidebarTop = headerHeight + 10;
 
-$(document).ready(function () {
+    $('.sidebar-inner').affix({
+      offset: {
+        top: sidebarTop,
+        bottom: footerOffset
+      }
+    });
+
+    $(document)
+      .on('affixed.bs.affix', function () {
+        updateTOCHeight(document.body.clientHeight - 100);
+      });
+  }
+
+  function initTOCDimension () {
+    var updateTOCHeightTimer;
+
+    $(window).on('resize', function () {
+      updateTOCHeightTimer && clearTimeout(updateTOCHeightTimer);
+
+      updateTOCHeightTimer = setTimeout(function () {
+        var tocWrapperHeight = document.body.clientHeight - 100;
+
+        updateTOCHeight(tocWrapperHeight);
+      }, 0);
+    });
+
+    // Initialize TOC Height.
+    updateTOCHeight(document.body.clientHeight - 100);
+
+    // Initialize TOC Width.
+    var scrollbarWidth = NexT.utils.getScrollbarWidth();
+    $('.post-toc').css('width', 'calc(100% + ' + scrollbarWidth + 'px)');
+  }
+
+  function updateTOCHeight (height) {
+    height = height || 'auto';
+    $('.post-toc').css('max-height', height);
+  }
+
+
   var html = $('html');
   var TAB_ANIMATE_DURATION = 200;
   var hasVelocity = $.isFunction(html.velocity);
+
+  $('.sidebar-nav-overview').css('marginLeft', '10px');
 
   $('.sidebar-nav li').on('click', function () {
     var item = $(this);
@@ -101,4 +150,5 @@ $(document).ready(function () {
           NexT.utils.displaySidebar();
       }) : NexT.utils.displaySidebar();
   }
-});
+};
+$(NexT.postDetails.init);

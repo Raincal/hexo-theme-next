@@ -94,7 +94,7 @@
     {% set container_class = container_class + 'sidebar-position-' + theme.sidebar.position %}
   {% endif %}
 
-  <div class="{{ container_class }} {% block page_class %}{% endblock %}">
+  <div id="pjax-container" class="{{ container_class }} {% block page_class %}{% endblock %}">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -157,6 +157,7 @@
   {% include scheme_script %}
   <!-- endbuild -->
 
+
   {% block script_extra %}{% endblock %}
 
 
@@ -172,5 +173,7 @@
   {% include '_third-party/scroll-cookie.swig' %}
   {% include '_third-party/exturl.swig' %}
   {% include '_third-party/bookmark.swig' %}
+  {% include '_scripts/pages/post-details.swig' %}
+  {% include '_scripts/pjax.swig' %}
 </body>
 </html>

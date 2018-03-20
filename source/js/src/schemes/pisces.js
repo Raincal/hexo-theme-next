@@ -1,16 +1,25 @@
-$(document).ready(function () {
+NexT.pisces = {};
 
-  var sidebarInner = $('.sidebar-inner');
+NexT.pisces.init = function () {
 
   initAffix();
-  resizeListener();
 
   function initAffix () {
-    var headerOffset = getHeaderOffset(),
-        footerOffset = getFooterOffset(),
-        sidebarHeight = $('#sidebar').height() + NexT.utils.getSidebarb2tHeight(),
-        contentHeight = $('#content').height();
+    var sidebarInner = $('.sidebar-inner'),
+    headerOffset = getHeaderOffset(),
+    footerOffset = getFooterOffset(),
+    sidebarHeight = $('#sidebar').height() + NexT.utils.getSidebarb2tHeight(),
+    contentHeight = $('#content').height();
 
+    resizeListener(sidebarInner);
+
+    window.onpopstate = function(event) {
+      recalculateAffixPosition(sidebarInner);
+
+      NexT.utils.registerBackToTop();
+
+      window.location.pathname !== '/' && NexT.postDetails.init();
+    };
     // Not affix if sidebar taller then content (to prevent bottom jumping).
     if (headerOffset + sidebarHeight < contentHeight) {
       sidebarInner.affix({
@@ -24,11 +33,11 @@ $(document).ready(function () {
     setSidebarMarginTop(headerOffset).css({ 'margin-left': 'initial' });
   }
 
-  function resizeListener () {
+  function resizeListener (sidebarInner) {
     var mql = window.matchMedia('(min-width: 991px)');
     mql.addListener(function(e){
       if(e.matches){
-        recalculateAffixPosition();
+        recalculateAffixPosition(sidebarInner);
       }
     });
   }
@@ -48,10 +57,10 @@ $(document).ready(function () {
     return $('#sidebar').css({ 'margin-top': headerOffset });
   }
 
-  function recalculateAffixPosition () {
+  function recalculateAffixPosition (sidebarInner) {
     $(window).off('.affix');
     sidebarInner.removeData('bs.affix').removeClass('affix affix-top affix-bottom');
     initAffix();
   }
 
-});
+};
