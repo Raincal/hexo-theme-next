@@ -4,6 +4,8 @@ NexT.pisces.init = function () {
 
   initAffix();
 
+  CONFIG.leancloud.enable && NexT.AV.init();
+
   function initAffix () {
     var sidebarInner = $('.sidebar-inner'),
     headerOffset = getHeaderOffset(),
@@ -19,6 +21,8 @@ NexT.pisces.init = function () {
       NexT.utils.registerBackToTop();
 
       window.location.pathname !== '/' && NexT.postDetails.init();
+
+      CONFIG.leancloud.enable && NexT.AV.init();
     };
     // Not affix if sidebar taller then content (to prevent bottom jumping).
     if (headerOffset + sidebarHeight < contentHeight) {

@@ -127,6 +127,11 @@
       indexName: '{{ theme.algolia.indexName }}',
       hits: {{ theme.algolia_search.hits | json_encode }},
       labels: {{ theme.algolia_search.labels | json_encode }}
+    },
+    leancloud: {
+      enable: '{{ theme.leancloud_visitors.enable }}',
+      appId: '{{ theme.leancloud_visitors.app_id }}',
+      appKey: '{{ theme.leancloud_visitors.app_key }}'
     }
   };
 </script>
