@@ -48,8 +48,12 @@ $(document).ready(function () {
 
   $(document).trigger('motion:before');
 
-  // Bootstrap Motion.
-  CONFIG.motion.enable && NexT.motion.integrator.bootstrap();
+  if(CONFIG.motion.enable) {
+    NexT.utils.needAffix() ? NexT.pisces.init() : NexT.motion.init();
+    NexT.motion.integrator.bootstrap();
+  } else {
+    NexT.utils.needAffix() && NexT.pisces.init();
+  }
 
   $(document).trigger('bootstrap:after');
 });

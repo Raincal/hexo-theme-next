@@ -8,20 +8,19 @@
     {% if theme.vendors.iDisqus_js %}
       {% set iDisqus_js_uri = theme.vendors.iDisqus_js %}
     {% endif %}
-    {% if is_post() or url_for(path) == '/about/index.html' or url_for(path) == '/photos/index.html' %}
-      <link rel="stylesheet" href="{{ iDisqus_css_uri }}" type="text/css" />
-      <script preload src="{{ iDisqus_js_uri }}"></script>
-      <script>
-          var disq = new iDisqus('comment', {
-              forum: '{{ theme.disqusapi.forum }}',
-              site: '{{ theme.disqusapi.site }}',
-              api: '{{ theme.disqusapi.api }}',
-              mode: {{ theme.disqusapi.mode }},
-              badge: '{{ theme.disqusapi.badge }}',
-              timeout: {{ theme.disqusapi.timeout }},
-              init: true,
-              url: location.pathname
-          });
-      </script>
-    {% endif %}
+    <link rel="stylesheet" href="{{ iDisqus_css_uri }}" type="text/css" />
+    <script preload src="{{ iDisqus_js_uri }}"></script>
+    <script>
+        var disq = new iDisqus('comment', {
+            forum: '{{ theme.disqusapi.forum }}',
+            site: '{{ theme.disqusapi.site }}',
+            api: '{{ theme.disqusapi.api }}',
+            mode: {{ theme.disqusapi.mode }},
+            badge: '{{ theme.disqusapi.badge }}',
+            timeout: {{ theme.disqusapi.timeout }},
+            init: true,
+            url: location.pathname
+        });
+        disq.count();
+    </script>
 {% endif %}
