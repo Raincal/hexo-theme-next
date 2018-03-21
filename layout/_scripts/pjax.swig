@@ -36,6 +36,8 @@
             NexT.utils.embeddedVideoTransformer();
             NexT.utils.addActiveClassToMenuItem();
 
+            CONFIG.leancloud.enable && NexT.AV.init();
+
             $(document).trigger('motion:before');
 
             if (CONFIG.motion.enable) {

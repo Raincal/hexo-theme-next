@@ -34,6 +34,7 @@ $(document).ready(function () {
    */
   CONFIG.fancybox && NexT.utils.wrapImageWithFancyBox();
   CONFIG.tabs && NexT.utils.registerTabsTag();
+  CONFIG.leancloud.enable && NexT.AV.init();
 
   NexT.utils.embeddedVideoTransformer();
   NexT.utils.addActiveClassToMenuItem();

@@ -4,8 +4,6 @@ NexT.pisces.init = function () {
 
   initAffix();
 
-  CONFIG.leancloud.enable && NexT.AV.init();
-
   function initAffix () {
     var sidebarInner = $('.sidebar-inner'),
     headerOffset = getHeaderOffset(),
@@ -23,6 +21,18 @@ NexT.pisces.init = function () {
       window.location.pathname !== '/' && NexT.postDetails.init();
 
       CONFIG.leancloud.enable && NexT.AV.init();
+
+      if(typeof DISQUS === 'object') {
+        // DISQUS.reset({
+        //   reload: true,
+        //   config: function () {
+        //     this.page.identifier = "newidentifier";
+        //     this.page.url = "http://example.com/#!newthread";
+        //   }
+        // });
+        $('#disqus_thread iframe').remove();
+        disq.reset();
+      }
     };
     // Not affix if sidebar taller then content (to prevent bottom jumping).
     if (headerOffset + sidebarHeight < contentHeight) {
