@@ -52,16 +52,40 @@
             $(document).trigger('bootstrap:after');
 
             var disq = new iDisqus('comment', {
-                forum: '{{ theme.disqusapi.forum }}',
-                site: '{{ theme.disqusapi.site }}',
-                api: '{{ theme.disqusapi.api }}',
-                mode: {{ theme.disqusapi.mode }},
-                badge: '{{ theme.disqusapi.badge }}',
-                timeout: {{ theme.disqusapi.timeout }},
-                init: true,
-                url: location.pathname
+              forum: '{{ theme.disqusapi.forum }}',
+              site: '{{ theme.disqusapi.site }}',
+              api: '{{ theme.disqusapi.api }}',
+              mode: {{ theme.disqusapi.mode }},
+              badge: '{{ theme.disqusapi.badge }}',
+              timeout: {{ theme.disqusapi.timeout }},
+              init: true,
+              url: location.pathname
             });
             disq.count();
+
+            {# if($('#comments').length) {
+              if(typeof DISQUS == 'object') {
+                DISQUS.reset({
+                  reload: true,
+                  config: function () {
+                    this.page.identifier = location.pathname;
+                    this.page.url =  '{{ theme.disqusapi.site }}' + location.pathname;
+                  }
+                })
+              } else {
+                disqus_config = function () {
+                  this.page.url = '{{ theme.disqusapi.site }}' + location.pathname;
+                  this.page.identifier = ocation.pathname;
+                };
+                function loadComments () {
+                  var d = document, s = d.createElement('script');
+                  s.src = 'https://{{theme.disqus.shortname}}.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', '' + +new Date());
+                  (d.head || d.body).appendChild(s);
+                }
+                loadComments();
+              }
+            } #}
         });
     })
 </script>

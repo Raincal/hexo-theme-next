@@ -22,14 +22,8 @@ NexT.pisces.init = function () {
 
       CONFIG.leancloud.enable && NexT.AV.init();
 
-      if(typeof DISQUS === 'object') {
-        // DISQUS.reset({
-        //   reload: true,
-        //   config: function () {
-        //     this.page.identifier = "newidentifier";
-        //     this.page.url = "http://example.com/#!newthread";
-        //   }
-        // });
+      if($('#comments').length && typeof DISQUS === 'object') {
+
         $('#disqus_thread iframe').remove();
         disq.reset();
       }
