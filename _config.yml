@@ -63,7 +63,7 @@ footer:
   #since: 2015
 
   # Icon between year and copyright info.
-  icon: 
+  icon:
     # Icon name in fontawesome, see: https://fontawesome.com/v4.7.0/icons
     # `heart` is recommended with animation in red (#ff0000).
     name: user
@@ -75,8 +75,11 @@ footer:
   # If not defined, will be used `author` from Hexo main config.
   copyright:
   # -------------------------------------------------------------
-  # Hexo link (Powered by Hexo).
-  powered: true
+  powered:
+    # Hexo link (Powered by Hexo).
+    enable: true
+    # Version info of Hexo after Hexo link (vX.X.X).
+    version: true
 
   theme:
     # Theme & scheme info link (Theme - NexT.scheme).
@@ -261,6 +264,8 @@ post_meta:
   updated_at: false
   # Only show 'updated' if different from 'created'.
   updated_diff: false
+  # If true, post's time format will be hexo config's date_format + ' ' + time_format.
+  date_time_merge: false
   categories: true
 
 # Post wordcount display settings
@@ -275,7 +280,7 @@ symbols_count_time:
 # Manual define the border radius in codeblock
 # Leave it empty for the default 1
 codeblock:
-  border_radius: 
+  border_radius:
 
 # Wechat Subscriber
 #wechat_subscriber:
@@ -306,6 +311,13 @@ related_posts:
 post_copyright:
   enable: false
   license: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a>
+
+# Post edit
+# Dependencies: https://github.com/hexojs/hexo-deployer-git
+post_edit:
+  enable: false
+  url: https://github.com/theme-next/theme-next.org/_posts/tree/master/ # Link for view source.
+# url: https://github.com/theme-next/theme-next.org/_posts/edit/master/ # Link for fork & edit.
 
 
 # ---------------------------------------------------------------
@@ -618,11 +630,10 @@ leancloud_visitors:
   enable: false
   app_id: #<app_id>
   app_key: #<app_key>
-  # LeanCloud Counter Security Plugin (beta, currently under the testing).
   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
   # If you don't care about security in lc counter and just want to use it directly
   # (without hexo-leancloud-counter-security plugin), set the `security` to `false`.
-  security: false
+  security: true
   betterPerformance: false
 
 # Another tool to show number of visitors to each article.
@@ -948,4 +959,5 @@ js: js
 images: images
 
 # Theme version
-version: 6.0.6
+version: 6.1.0
+

@@ -37,8 +37,6 @@ $(document).ready(function () {
   CONFIG.leancloud.enable && NexT.AV.init();
 
   NexT.utils.embeddedVideoTransformer();
-  NexT.utils.addActiveClassToMenuItem();
-
 
   // Define Motion Sequence.
   NexT.motion.integrator
