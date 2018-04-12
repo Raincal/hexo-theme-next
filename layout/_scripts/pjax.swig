@@ -34,7 +34,6 @@
 
             CONFIG.fancybox && NexT.utils.wrapImageWithFancyBox();
             NexT.utils.embeddedVideoTransformer();
-            NexT.utils.addActiveClassToMenuItem();
 
             CONFIG.leancloud.enable && NexT.AV.init();
 
