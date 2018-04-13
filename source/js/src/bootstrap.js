@@ -47,11 +47,10 @@ $(document).ready(function () {
 
   $(document).trigger('motion:before');
 
+  NexT.utils.needAffix() ? NexT.pisces.init() : NexT.motion.init();
+
   if(CONFIG.motion.enable) {
-    NexT.utils.needAffix() ? NexT.pisces.init() : NexT.motion.init();
     NexT.motion.integrator.bootstrap();
-  } else {
-    NexT.utils.needAffix() && NexT.pisces.init();
   }
 
   $(document).trigger('bootstrap:after');
