@@ -13,21 +13,6 @@ NexT.pisces.init = function () {
 
     resizeListener(sidebarInner);
 
-    window.onpopstate = function(event) {
-      recalculateAffixPosition(sidebarInner);
-
-      NexT.utils.registerBackToTop();
-
-      window.location.pathname !== '/' && NexT.postDetails.init();
-
-      CONFIG.leancloud.enable && NexT.AV.init();
-
-      if($('#comments').length && typeof DISQUS === 'object') {
-
-        $('#disqus_thread iframe').remove();
-        disq.reset();
-      }
-    };
     // Not affix if sidebar taller then content (to prevent bottom jumping).
     if (headerOffset + sidebarHeight < contentHeight) {
       sidebarInner.affix({

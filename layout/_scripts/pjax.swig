@@ -10,32 +10,16 @@
             fragment: '#pjax-container'
         });
         $(document).on('pjax:complete', function () {
+            registerEvent();
+
             NexT.motion.integrator.cursor = -1;
 
             $(document).trigger('bootstrap:before');
 
-            NexT.utils.isMobile() && window.FastClick.attach(document.body);
-
             NexT.utils.lazyLoadPostsImages();
-
-            NexT.utils.registerBackToTop();
-
-            $('.site-nav-toggle button').on('click', function () {
-                var $siteNav = $('.site-nav');
-                var ON_CLASS_NAME = 'site-nav-on';
-                var isSiteNavOn = $siteNav.hasClass(ON_CLASS_NAME);
-                var animateAction = isSiteNavOn ? 'slideUp' : 'slideDown';
-                var animateCallback = isSiteNavOn ? 'removeClass' : 'addClass';
-
-                $siteNav.stop()[animateAction]('fast', function () {
-                    $siteNav[animateCallback](ON_CLASS_NAME);
-                });
-            });
 
             CONFIG.fancybox && NexT.utils.wrapImageWithFancyBox();
             NexT.utils.embeddedVideoTransformer();
-
-            CONFIG.leancloud.enable && NexT.AV.init();
 
             $(document).trigger('motion:before');
 
@@ -43,9 +27,6 @@
             if (CONFIG.motion.enable) {
                 NexT.motion.integrator.bootstrap();
             }
-
-            NexT.postDetails.init();
-
             $(document).trigger('bootstrap:after');
 
             var disq = new iDisqus('comment', {
@@ -84,5 +65,44 @@
               }
             } #}
         });
+
+        window.onpopstate = function(event) {
+          registerEvent();
+
+          window.location.pathname !== '/' && NexT.postDetails.init();
+
+          NexT.utils.needAffix() ? NexT.pisces.init() : NexT.motion.init();
+          if (CONFIG.motion.enable) {
+              NexT.motion.integrator.bootstrap();
+          }
+
+          if($('#comments').length && typeof DISQUS === 'object') {
+
+            $('#disqus_thread iframe').remove();
+            disq.reset();
+          }
+        };
+
+        function registerEvent() {
+          NexT.utils.registerBackToTop();
+
+          CONFIG.leancloud.enable && NexT.AV.init();
+
+          $('.site-nav-toggle button').on('click', function () {
+            var $siteNav = $('.site-nav');
+            var ON_CLASS_NAME = 'site-nav-on';
+            var isSiteNavOn = $siteNav.hasClass(ON_CLASS_NAME);
+            var animateAction = isSiteNavOn ? 'slideUp' : 'slideDown';
+            var animateCallback = isSiteNavOn ? 'removeClass' : 'addClass';
+
+            $siteNav.stop()[animateAction]('fast', function () {
+              $siteNav[animateCallback](ON_CLASS_NAME);
+            });
+          });
+
+          NexT.utils.isMobile() && window.FastClick.attach(document.body);
+
+          NexT.postDetails.init();
+        }
     })
 </script>
