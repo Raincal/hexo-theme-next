@@ -13,9 +13,9 @@
       <i class="fa fa-area-chart"></i>
     </span>
     {% if theme.symbols_count_time.item_text_total %}
-      <span class="post-meta-item-text">{{ __('post.total_symbols') + __('symbol.colon') }}</span>
+      <span class="post-meta-item-text">{{ __('symbols_count_time.count_total') + __('symbol.colon') }}</span>
     {% endif %}
-    <span title="{{ __('post.total_symbols') }}">{#
+    <span title="{{ __('symbols_count_time.count_total') }}">{#
     #}{{ symbolsCountTotal(site) }}{#
   #}</span>
   {% endif %}
@@ -26,10 +26,10 @@
       <i class="fa fa-coffee"></i>
     </span>
     {% if theme.symbols_count_time.item_text_total %}
-      <span class="post-meta-item-text">{{ __('post.total_time') + __('symbol.colon') }}</span>
+      <span class="post-meta-item-text">{{ __('symbols_count_time.time_total')}} &asymp;</span>
     {% endif %}
-    <span title="{{ __('post.total_time') }}">{#
-    #}{{ symbolsTimeTotal(site, theme.symbols_count_time.awl, theme.symbols_count_time.wpm) }}{#
+    <span title="{{ __('symbols_count_time.time_total') }}">{#
+    #}{{ symbolsTimeTotal(site, theme.symbols_count_time.awl, theme.symbols_count_time.wpm, __('symbols_count_time.time_minutes')) }}{#
   #}</span>
   {% endif %}
 </div>
@@ -40,7 +40,7 @@
 
 {% if theme.footer.powered.enable %}
   <div class="powered-by">{#
-  #}{{ __('footer.powered', '<a target="_blank" rel="noopener" href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>') }}{% if theme.footer.powered.version %} v{{ hexo_version() }}{% endif %}{#
+  #}{{ __('footer.powered', '<a target="_blank" rel="noopener" href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>') }}{% if theme.footer.powered.version %} v{{ hexo_env('version') }}{% endif %}{#
 #}</div>
 {% endif %}
 
@@ -53,7 +53,7 @@
   #}{{ __('footer.theme') }} &mdash; {#
   #}<a class="theme-link" target="_blank" rel="noopener" {{ nofollow }} href="https://github.com/theme-next/hexo-theme-next">{#
     #}NexT.{{ theme.scheme }}{#
-  #}</a>{% if theme.footer.theme.version %} v{{ theme.version }}{% endif %}{#
+  #}</a>{% if theme.footer.theme.version %} v{{ version }}{% endif %}{#
 #}</div>
 {% endif %}
 

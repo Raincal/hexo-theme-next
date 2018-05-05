@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 
+{# NexT version #}
+{% set version = next_env('version') %}
+
 {% set html_class = 'theme-next ' + theme.scheme %}
 {% if theme.motion.enable %}
   {% set html_class = html_class + ' use-motion' %}
@@ -174,5 +177,6 @@
   {% include '_third-party/bookmark.swig' %}
   {% include '_scripts/pages/post-details.swig' %}
   {% include '_scripts/pjax.swig' %}
+  {% include '_third-party/copy-code.swig' %}
 </body>
 </html>
