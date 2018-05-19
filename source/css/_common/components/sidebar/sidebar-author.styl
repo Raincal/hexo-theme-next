@@ -1,10 +1,8 @@
 .site-author-image {
   display: block;
-  background: url($site-author-image-url) center no-repeat;
-  background-size: contain;
   margin: 0 auto;
   padding: $site-author-image-padding;
-  width: $site-author-image-width;
+  max-width: $site-author-image-width;
   height: $site-author-image-height;
   border: $site-author-image-border-width solid $site-author-image-border-color;
   opacity: hexo-config('avatar.opacity') is a 'unit' ? hexo-config('avatar.opacity') : 1;
