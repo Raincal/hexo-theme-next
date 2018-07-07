@@ -30,11 +30,6 @@
       <div id="comment"></div>
     </div>
 
-  {% elseif theme.hypercomments_id %}
-    <div class="comments" id="comments">
-      <div id="hypercomments_widget"></div>
-    </div>
-
   {% elseif theme.youyan_uid %}
     <div class="comments" id="comments">
       <div id="uyan_frame"></div>

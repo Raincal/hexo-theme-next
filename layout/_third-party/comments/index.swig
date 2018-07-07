@@ -1,6 +1,5 @@
 {% include 'disqus.swig' %}
 {% include 'disqusapi.swig' %}
-{% include 'hypercomments.swig' %}
 {% include 'youyan.swig' %}
 {% include 'livere.swig' %}
 {% include 'changyan.swig' %}
