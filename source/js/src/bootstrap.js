@@ -34,7 +34,6 @@ $(document).ready(function() {
    */
   CONFIG.fancybox && NexT.utils.wrapImageWithFancyBox();
   CONFIG.tabs && NexT.utils.registerTabsTag();
-  CONFIG.leancloud.enable && NexT.AV.init();
 
   NexT.utils.embeddedVideoTransformer();
 
@@ -47,11 +46,8 @@ $(document).ready(function() {
 
   $(document).trigger('motion:before');
 
-  NexT.utils.needAffix() ? NexT.pisces.init() : NexT.motion.init();
-
-  if(CONFIG.motion.enable) {
-    NexT.motion.integrator.bootstrap();
-  }
+  // Bootstrap Motion.
+  CONFIG.motion.enable && NexT.motion.integrator.bootstrap();
 
   $(document).trigger('bootstrap:after');
 });

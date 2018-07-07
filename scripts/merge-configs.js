@@ -16,9 +16,6 @@ hexo.on('generateBefore', function() {
     if (data && data.next) {
       if (data.next.override) {
         hexo.theme.config = data.next;
-      } else if(data._mobile) {
-        merge(hexo.config, data.next, data._mobile);
-        merge(hexo.theme.config, data.next, data._mobile);
       } else if(data._firebase) {
         merge(hexo.config, data.next, data._firebase);
         merge(hexo.theme.config, data.next, data._firebase);

@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
 
-NexT.pisces.init = function () {
+  var sidebarInner = $('.sidebar-inner');
 
   function getHeaderOffset() {
     return $('.header-inner').height() + CONFIG.sidebar.offset;
@@ -56,4 +56,4 @@ NexT.pisces.init = function () {
   initAffix();
   resizeListener();
 
-};
+});

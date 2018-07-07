@@ -101,5 +101,4 @@ $(document).ready(function() {
       }
       : NexT.utils.displaySidebar();
   }
-};
-$(NexT.postDetails.init);
+});

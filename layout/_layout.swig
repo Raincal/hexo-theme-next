@@ -16,37 +16,6 @@
 
 <html class="{{ html_class | lower }}" lang="{{ config.language }}">
 <head>
-  <script>
-    function hasMobileUA() {
-      var nav = window.navigator;
-      var ua = nav.userAgent;
-      var pa = /iPad|iPhone|Android|Opera Mini|BlackBerry|webOS|UCWEB|Blazer|PSP|IEMobile|Symbian/g;
-
-      return pa.test(ua);
-    }
-
-    function isTablet() {
-      return window.screen.width < 992 && window.screen.width > 767 && this.hasMobileUA();
-    }
-
-    function isMobile() {
-      return window.screen.width < 767 && this.hasMobileUA();
-    }
-
-    function isDesktop() {
-      return !this.isTablet() && !this.isMobile();
-    }
-
-    {% if theme.is_mobile %}
-      if(isDesktop()) {
-        window.location.href = "{{ config.url }}" + window.location.pathname;
-      }
-    {% elseif not theme.is_mobile %}
-      if(isMobile()) {
-        window.location.href = "{{ theme.mobile_url }}" + window.location.pathname;
-      }
-    {% endif %}
-  </script>
   {{ partial('_partials/head/head.swig', {}, {cache: theme.cache.enable}) }}
   {% include '_partials/head/head-unique.swig' %}
   <title>{% block title %}{% endblock %}</title>
@@ -103,7 +72,7 @@
     {% set container_class = container_class + 'sidebar-position-' + theme.sidebar.position %}
   {% endif %}
 
-  <div id="pjax-container" class="{{ container_class }} {% block page_class %}{% endblock %}">
+  <div class="{{ container_class }} {% block page_class %}{% endblock %}">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -181,8 +150,6 @@
   {% include '_third-party/scroll-cookie.swig' %}
   {% include '_third-party/exturl.swig' %}
   {% include '_third-party/bookmark.swig' %}
-  {% include '_scripts/pages/post-details.swig' %}
-  {% include '_scripts/pjax.swig' %}
   {% include '_third-party/copy-code.swig' %}
 </body>
 </html>
