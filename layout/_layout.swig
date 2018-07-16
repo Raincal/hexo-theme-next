@@ -83,6 +83,7 @@
 
     <main id="main" class="main">
       <div class="main-inner">
+        {% include '_third-party/css-doodle.swig' %}
         <div class="content-wrap">
           {% if theme.scheme === 'Pisces' || theme.scheme === 'Gemini' %}
             {% include '_partials/header/sub-menu.swig' %}

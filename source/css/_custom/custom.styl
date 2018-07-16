@@ -1,6 +1,7 @@
 // Custom styles.
 #comments {
   margin-top: 12px;
+  position: relative;
   a {
     border: none;
   }
@@ -17,3 +18,34 @@ img.emojione {
 }
 
 .headband { display: none; }
+
+.no-doodle-support {
+  background: $gainsboro;
+
+  css-doodle {
+    display: none;
+  }
+
+  .back-to-top, .sidebar, {
+    background: $gainsboro;
+  }
+}
+
+.doodle-support {
+  .post-block, .header-inner, .sidebar-inner, .comments {
+    opacity: .9 !important;
+  }
+
+  .header {
+    z-index: 1;
+  }
+
+  .footer a {
+    color: white;
+    opacity: .9;
+  }
+
+  .back-to-top {
+    color: rgba(white, .8);
+  }
+}
