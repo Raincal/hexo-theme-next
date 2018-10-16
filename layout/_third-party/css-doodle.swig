@@ -1,6 +1,6 @@
 {% if theme.scheme == 'Gemini' and theme.css_doodle and theme.css_doodle.enable %}
   <link rel='stylesheet prefetch' href='https://cdn.jsdelivr.net/devicons/1.8.0/css/devicons.min.css'>
-  <script src="https://cdn.jsdelivr.net/npm/css-doodle@0.4.2/css-doodle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/css-doodle@0.4.9/css-doodle.min.js"></script>
   <css-doodle>
     :doodle {
       @grid: 22 / 100vmax;
