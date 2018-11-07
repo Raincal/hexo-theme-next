@@ -156,6 +156,7 @@
   {% include '_third-party/analytics/lean-analytics.swig' %}
   {% include '_third-party/analytics/firestore.swig' %}
   {% include '_third-party/seo/baidu-push.swig' %}
+  {% include '_third-party/schedule.swig' %}
   {% include '_third-party/math/index.swig' %}
   {% include '_third-party/needsharebutton.swig' %}
   {% include '_third-party/rating.swig' %}
@@ -164,5 +165,6 @@
   {% include '_third-party/exturl.swig' %}
   {% include '_third-party/bookmark.swig' %}
   {% include '_third-party/copy-code.swig' %}
+  {% include '_third-party/pdf.swig' %}
 </body>
 </html>
