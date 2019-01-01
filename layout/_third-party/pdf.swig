@@ -11,8 +11,8 @@
   {% endif %}
 
   {% if not theme.pdf.per_page or (is_index_has_pdf or page.pdf) %}
-    <script type="text/javascript" src="{{ theme.pdf.pdfobject.cdn }}"></script>
-    <script type="text/javascript">
+    <script src="{{ theme.pdf.pdfobject.cdn }}"></script>
+    <script>
     var options = {
       pdfOpenParams: {
         navpanes: 0,
@@ -29,7 +29,7 @@
       if (!href) return;
       if (href.endsWith(".pdf") || href.endsWith(".pdf/")) {
         var id = "pdf" + Math.floor(Math.random() * 10000);
-        $(this).after("<div id='" + id + "'></div>").remove();
+        $(this).after(`<div id="${id}"></div>`).remove();
         PDFObject.embed(href, "#" + id, options);
       }
     });

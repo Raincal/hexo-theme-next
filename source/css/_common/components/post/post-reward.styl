@@ -21,7 +21,6 @@
     font-variant: normal;
     font-stretch: normal;
     font-size: 18px;
-    font-family: "Microsoft Yahei";
     background: #F44336;
 }
 #rewardButton span:hover{
@@ -39,16 +38,19 @@
     display: inline-block;
     margin: 0.8em 2em 0 2em;
 }
-// #QR > div:hover p {
-//   animation: roll 0.1s infinite linear;
-//   -webkit-animation: roll 0.1s infinite linear;
-//   -moz-animation: roll 0.1s infinite linear;
-// }
-// @keyframes roll {
-//     from {
-//       transform(rotateZ(30deg));
-//     }
-//     to {
-//       transform(rotateZ(-30deg));
-//     }
-// }
+#QR p {
+    text-align: center;
+}
+#QR > div:hover p {
+  animation: roll 0.1s infinite linear;
+  -webkit-animation: roll 0.1s infinite linear;
+  -moz-animation: roll 0.1s infinite linear;
+}
+@keyframes roll {
+    from {
+      transform(rotateZ(30deg));
+    }
+    to {
+      transform(rotateZ(-30deg));
+    }
+}

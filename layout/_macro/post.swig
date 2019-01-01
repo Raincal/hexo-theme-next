@@ -19,16 +19,16 @@
   {### POST BLOCK ###}
   {##################}
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="{{ config.url }}{{ url_for(post.path) }}">
+    <link itemprop="mainEntityOfPage" href="{{ config.url }}{{ url_for(post.path) }}"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="{{ author }}">
-      <meta itemprop="description" content="{{ description }}">
-      <meta itemprop="image" content="{{ url_for( theme.avatar.url | default(theme.images + '/avatar.gif') ) }}">
+      <meta itemprop="name" content="{{ author }}"/>
+      <meta itemprop="description" content="{{ description }}"/>
+      <meta itemprop="image" content="{{ url_for( theme.avatar.url | default(theme.images + '/avatar.gif') ) }}"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="{{ title }}">
+      <meta itemprop="name" content="{{ title }}"/>
     </span>
 
     {% if not headlessPost %}
@@ -46,7 +46,8 @@
                 </span>
               {% endif %}
               {% set postTitleIcon = '<i class="fa fa-external-link"></i>' %}
-              {{ next_url(url_for(post.link), (post.title or post.link) + postTitleIcon, {class: 'post-title-link post-title-link-external', itemprop: 'url' }) }}
+              {% set postText = post.title or post.link %}
+              {{ next_url(post.link, postText + postTitleIcon, {class: 'post-title-link post-title-link-external', itemprop: 'url' }) }}
             {% else %}{#
             #}{% if is_index %}
                 {% if post.sticky > 0 %}
@@ -55,13 +56,10 @@
                   </span>
                 {% endif %}
                 {# Need to delete maybe? #}
-                {{ next_url(url_for(post.path), post.title | default(__('post.untitled')), {class: 'post-title-link', itemprop: url }) }}
+                {{ next_url(post.path, post.title | default(__('post.untitled')), {class: 'post-title-link', itemprop: 'url' }) }}
               {% else -%}
                 {{- post.title -}}
-                {% if theme.post_edit.enable -%}
-                  {% set editIcon = '<i class="fa fa-pencil"></i>' -%}
-                  {{ next_url(theme.post_edit.url + post.source.slice(7), editIcon, {class: 'post-edit-link', title: __('post.edit') }) }}
-                {%- endif %}
+                {% include '../_partials/post-edit.swig' %}
               {% endif %}
             {% endif %}
           </{% if theme.seo %}h2{% else %}h1{% endif %}>
@@ -329,12 +327,14 @@
                 {{ __('post.read_more') }} &raquo;
               </a>
             </div>
-         {% endif %}
+          {% endif %}
           <!--/noindex-->
         {% elif theme.auto_excerpt.enable %}
-          {% set content = post.content | striptags %}
-          {{ content.substring(0, theme.auto_excerpt.length) }}
-          {% if content.length > theme.auto_excerpt.length %}...{% endif %}
+          {% set content = post.content | replace('<td class="gutter">.*?</td>', "", "g") | striptags %}
+            <p>
+              {{ content.substring(0, theme.auto_excerpt.length) }}
+              {% if content.length > theme.auto_excerpt.length %}...{% endif %}
+            </p>
           <!--noindex-->
           {% if theme.read_more_btn %}
             <div class="post-button text-center">
@@ -357,7 +357,7 @@
     </div>
 
     {% if theme.related_posts.enable and (theme.related_posts.display_in_home or not is_index) %}
-      {% include 'post-related.swig' with { post: post } %}
+      {% include '../_partials/post/post-related.swig' with { post: post } %}
     {% endif %}
 
     {#####################}
@@ -366,24 +366,24 @@
 
     {% if theme.wechat_subscriber.enabled and not is_index %}
       <div>
-        {% include 'wechat-subscriber.swig' %}
+        {% include '../_partials/post/wechat-subscriber.swig' %}
       </div>
     {% endif %}
 
     {% if page.reward === undefined and theme.reward.enable %}
-      {% set reward_able = true %} 
+      {% set reward_able = true %}
     {% else %}
-      {% set reward_able = page.reward %} 
+      {% set reward_able = page.reward %}
     {% endif %}
     {% if reward_able and (theme.reward.alipay or theme.reward.wechatpay or theme.reward.bitcoin) and not is_index %}
       <div>
-        {% include 'reward.swig' %}
+        {% include '../_partials/post/reward.swig' %}
       </div>
     {% endif %}
 
     {% if theme.creative_commons.license and theme.creative_commons.post and not is_index %}
       <div>
-        {% include '../_partials/post-copyright.swig' with { post: post } %}
+        {% include '../_partials/post/post-copyright.swig' with { post: post } %}
       </div>
     {% endif %}
 
@@ -397,7 +397,7 @@
       {% endif %}
 
       {% if not is_index %}
-      {% if theme.rating.enable or (theme.vkontakte_api.enable and theme.vkontakte_api.like) or (theme.facebook_sdk.enable and theme.facebook_sdk.like_button) or (theme.needmoreshare2.enable and theme.needmoreshare2.postbottom.enable) or (theme.baidushare and theme.baidushare.type === "button" )%}
+      {% if theme.rating.enable or (theme.vkontakte_api.enable and theme.vkontakte_api.like) or (theme.facebook_sdk.enable and theme.facebook_sdk.like_button) or (theme.needmoreshare2.enable and theme.needmoreshare2.postbottom.enable) or (theme.baidushare and theme.baidushare.type === "button") %}
         <div class="post-widgets">
         {% if theme.rating.enable %}
           <div class="wp_rating">
