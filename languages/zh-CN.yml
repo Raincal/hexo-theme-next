@@ -45,7 +45,7 @@ page:
   totally: 共有
   tags: 标签
 footer:
-  powered: 'Hosted by %s'
+  powered: "由 %s 强力驱动"
   theme: 主题
   total_views: 总访问量
   total_visitors: 总访客量

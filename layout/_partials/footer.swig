@@ -39,8 +39,9 @@
 
 {% if theme.footer.powered.enable %}
   <div class="powered-by">{#
-  #}{{ __('footer.powered', '<a target="_blank" rel="noopener" href="https://pages.coding.me" style="font-weight: bold">Coding Pages</a>') }}{% if theme.footer.powered.version %} v{{ hexo_env('version') }}{% endif %}{#
-#}</div>
+  #}{{ __('footer.powered', next_url('https://hexo.io', 'Hexo', {class: 'theme-link'})) }}{#
+  #}{% if theme.footer.powered.version %} v{{ hexo_env('version') }}{% endif %}{#
+ #}</div>
 {% endif %}
 
 {% if theme.footer.powered.enable and theme.footer.theme.enable %}
