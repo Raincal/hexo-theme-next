@@ -22,13 +22,13 @@
         {%- endif -%}
       {%- endfor %}
 
-      {% set hasSearch = theme.swiftype_key || theme.algolia_search.enable || theme.tinysou_Key || theme.local_search.enable || theme.google_search.enable %}
+      {% set hasSearch = theme.swiftype_key || theme.algolia_search.enable || theme.local_search.enable || theme.google_search.enable %}
       {% if hasSearch %}
         {% set search_site = theme.google_search.site || 'https://www.google.com' %}
         <li class="menu-item menu-item-search">
           {% if theme.swiftype_key %}
             <a href="javascript:;" class="st-search-show-outputs">
-          {% elseif theme.local_search.enable || theme.algolia_search.enable %}
+          {% elif theme.local_search.enable || theme.algolia_search.enable %}
             <a href="javascript:;" class="popup-trigger">
           {% elseif theme.google_search.enable %}
             <a href="{{ search_site + '/search?q=site%3Araincal.com' }}" target="_blank" rel="noopener">
