@@ -95,7 +95,7 @@ $(document).ready(function() {
     display = isSidebarCouldDisplay && hasTOC;
   }
   if (display) {
-    CONFIG.motion.enable
+    CONFIG.motion.enable && CONFIG.motion.velocity
       ? NexT.motion.middleWares.sidebar = function() {
         NexT.utils.displaySidebar();
       }
