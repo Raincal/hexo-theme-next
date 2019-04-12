@@ -301,7 +301,7 @@ NexT.utils = NexT.$u = {
 $(document).ready(function() {
 
   function wrapTable() {
-    $('table').not('figure table').wrap('<div class="table-container"></div>');
+    $('table').wrap('<div class="table-container"></div>');
   }
 
   /**
