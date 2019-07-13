@@ -14,9 +14,6 @@ hexo.on('generateBefore', function() {
     if (data && data.next) {
       if (data.next.override) {
         hexo.theme.config = data.next;
-      } else if(data._firebase) {
-        Object.assign(hexo.config, data.next, data._firebase);
-        Object.assign(hexo.theme.config, data.next, data._firebase);
       } else {
         Object.assign(hexo.config, data.next);
         Object.assign(hexo.theme.config, data.next);
