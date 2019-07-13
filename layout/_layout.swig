@@ -124,12 +124,6 @@
       </div>
     {% endif %}
 
-    {% if theme.baidushare and theme.baidushare.type === "slide" %}
-      <div>
-        {% include '_partials/share/baidushare.swig' %}
-      </div>
-    {% endif %}
-
     {% if theme.add_this_id %}
       <div>
         {% include '_partials/share/add-this.swig' %}
@@ -152,6 +146,7 @@
 
   {% block script_extra %}{% endblock %}
 
+  {% include '_scripts/three.swig' %}
   {% include '_third-party/quicklink.swig' %}
   {% include '_third-party/comments/index.swig' %}
   {% include '_third-party/search/index.swig' %}
@@ -166,8 +161,12 @@
   {% include '_third-party/rating.swig' %}
   {% include '_third-party/pangu.swig' %}
   {% include '_third-party/bookmark.swig' %}
-  {% include '_third-party/copy-code.swig' %}
   {% include '_third-party/chatra.swig' %}
   {% include '_third-party/tidio.swig' %}
+
+  {% for inject_item in theme.injects.bodyEnd %}
+    {{ partial(inject_item.layout, inject_item.locals, inject_item.options) }}
+  {% endfor %}
+
 </body>
 </html>

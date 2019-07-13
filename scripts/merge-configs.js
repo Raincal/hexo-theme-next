@@ -2,8 +2,6 @@
 
 'use strict';
 
-var merge = require('./merge');
-
 hexo.on('generateBefore', function() {
   if (hexo.locals.get) {
     var data = hexo.locals.get('data');
@@ -20,11 +18,11 @@ hexo.on('generateBefore', function() {
         merge(hexo.config, data.next, data._firebase);
         merge(hexo.theme.config, data.next, data._firebase);
       } else {
-        merge(hexo.config, data.next);
-        merge(hexo.theme.config, data.next);
+        Object.assign(hexo.config, data.next);
+        Object.assign(hexo.theme.config, data.next);
       }
     } else {
-      merge(hexo.theme.config, hexo.config.theme_config);
+      Object.assign(hexo.theme.config, hexo.config.theme_config);
     }
 
     // Custom languages support. Introduced in NexT v6.3.0.
@@ -33,7 +31,7 @@ hexo.on('generateBefore', function() {
       var i18n = this.theme.i18n;
 
       var mergeLang = function(lang) {
-        i18n.set(lang, merge(i18n.get([lang]), data.languages[lang]));
+        i18n.set(lang, Object.assign(i18n.get([lang]), data.languages[lang]));
       };
 
       if (Array.isArray(lang)) {
@@ -45,4 +43,8 @@ hexo.on('generateBefore', function() {
       }
     }
   }
+
+  // Add filter type `theme_inject`
+  require('./injects')(hexo);
+
 });

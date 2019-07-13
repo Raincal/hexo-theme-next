@@ -165,12 +165,9 @@
             </div>
           {% endif %}
 
-          {% if theme.custom_file_path.sidebar %}
-            {% set custom_sidebar = '../../../../' + theme.custom_file_path.sidebar %}
-          {% else %}
-            {% set custom_sidebar = '../_custom/sidebar.swig' %}
-          {% endif %}
-          {% include custom_sidebar %}
+          {% for inject_item in theme.injects.sidebar %}
+            {{ partial(inject_item.layout, inject_item.locals, inject_item.options) }}
+          {% endfor %}
         </div>
       </div>
 
@@ -198,7 +195,7 @@
       {% endif %}
 
       {% if theme.back2top.enable and theme.back2top.sidebar %}
-        <div class="back-to-top">
+        <div class="back-to-top motion-element">
           <i class="fa fa-arrow-up"></i>
           {% if theme.back2top.scrollpercent %}
             <span id="scrollpercent"><span>0</span>%</span>
@@ -208,7 +205,5 @@
 
     </div>
   </aside>
-  {% if theme.sidebar.dimmer %}
-    <div id="sidebar-dimmer"></div>
-  {% endif %}
+  <div id="sidebar-dimmer"></div>
 {% endmacro %}
