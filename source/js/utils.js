@@ -74,8 +74,8 @@ NexT.utils = {
         ta.readOnly = true;
         ta.value = code;
         document.body.appendChild(ta);
-        const selection = document.getSelection();
-        const selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
+        var selection = document.getSelection();
+        var selected = selection.rangeCount > 0 ? selection.getRangeAt(0) : false;
         ta.select();
         ta.setSelectionRange(0, code.length);
         ta.readOnly = false;
