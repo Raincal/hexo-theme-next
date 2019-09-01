@@ -172,12 +172,16 @@ NexT.utils = {
     });
 
     backToTop && backToTop.addEventListener('click', () => {
-      window.anime({
-        targets  : document.documentElement,
-        duration : 500,
-        easing   : 'linear',
-        scrollTop: 0
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
       });
+      // window.anime({
+      //   targets  : document.documentElement,
+      //   duration : 500,
+      //   easing   : 'linear',
+      //   scrollTop: 0
+      // });
     });
   },
 
