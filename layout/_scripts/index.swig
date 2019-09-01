@@ -5,6 +5,7 @@
   {{- next_js('photoswipe-ui-default.min.js') }}
 {% endif %}
 
+<!-- build:js /js/bundle.js -->
 {{- next_js('utils.js') }}
 {%- if theme.motion.enable %}
   {{- next_js('motion.js') }}
@@ -14,6 +15,8 @@
 {% include scheme_script %}
 
 {{- next_js('next-boot.js') }}
+<!-- endbuild -->
+
 {%- if theme.bookmark.enable %}
   {{- next_js('bookmark.js') }}
 {%- endif %}
