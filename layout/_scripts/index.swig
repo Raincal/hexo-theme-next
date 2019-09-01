@@ -1,5 +1,10 @@
 {% include 'vendors.swig' %}
 
+{% if url_for(path) == "/photos/index.html" %}
+  {{- next_js('photoswipe.min.js') }}
+  {{- next_js('photoswipe-ui-default.min.js') }}
+{% endif %}
+
 {{- next_js('utils.js') }}
 {%- if theme.motion.enable %}
   {{- next_js('motion.js') }}
