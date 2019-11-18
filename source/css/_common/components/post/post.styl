@@ -1,13 +1,9 @@
 .post-body {
-  word-wrap();
   font-family: $font-family-posts;
+  word-wrap();
 
   +desktop-large() {
     font-size: $font-size-large;
-  }
-
-  +mobile() {
-    font-size: $font-size-small;
   }
 
   span.exturl .fa {
@@ -28,6 +24,11 @@
 .post-sticky-flag {
   display: inline-block;
   transform: rotate(30deg);
+}
+
+.post-button {
+  margin-top: 40px;
+  text-align: center;
 }
 
 .use-motion {
@@ -56,18 +57,15 @@
   }
 }
 
-@import 'post-button';
 @import 'post-collapse';
 @import 'post-eof';
 @import 'post-expand';
 @import 'post-gallery';
-@import 'post-meta';
+@import 'post-header';
 @import 'post-nav';
 @import 'post-rtl';
 @import 'post-tags';
-@import 'post-title';
 @import 'post-widgets';
-
-@import 'post-reward' if (hexo-config('reward_settings.enable'));
+@import 'post-reward';
 
 @import 'post-copyright' if (hexo-config('creative_commons.post'));
